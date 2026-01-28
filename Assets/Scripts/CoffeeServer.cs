@@ -109,12 +109,10 @@ public class CoffeeServer : MonoBehaviour
 
         nextCoffeeIndex = GetRandomCoffeeIndex();
 
-        nextCoffeeIndex = GetRandomCoffeeIndex();
-
         if (coffeeSprites.Length > nextCoffeeIndex)
         {
             nextCoffeeDisplay.sprite = coffeeSprites[nextCoffeeIndex];
-            nextCoffeeDisplay.SetNativeSize(); 
+            nextCoffeeDisplay.SetNativeSize();
         }
     }
 
@@ -145,7 +143,7 @@ public class CoffeeServer : MonoBehaviour
     private void ShootCoffee()
     {
         if (aimSprite != null) aimSprite.enabled = false;
-        
+
         currentRb.bodyType = RigidbodyType2D.Dynamic; 
         currentRb.AddForce(Vector2.up * shootForce, ForceMode2D.Impulse);
 
