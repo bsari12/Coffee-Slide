@@ -140,9 +140,9 @@ public class CoffeeServer : MonoBehaviour
         int nextLevelIndex = currentLevelIndex + 1;
         GameObject nextPrefab = allCoffeePrefabs[nextLevelIndex];
 
-        Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+        Quaternion naturalRotation = Quaternion.Euler(0, 0, Random.Range(-20f, 20f));
 
-        GameObject newCoffee = Instantiate(nextPrefab, spawnPos, randomRotation);
+        GameObject newCoffee = Instantiate(nextPrefab, spawnPos, naturalRotation);
 
         Rigidbody2D newRb = newCoffee.GetComponent<Rigidbody2D>();
         
