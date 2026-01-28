@@ -107,8 +107,6 @@ public class CoffeeServer : MonoBehaviour
 
         nextCoffeeIndex = GetRandomCoffeeIndex();
 
-        Debug.Log("Next Coffee: C" + (nextCoffeeIndex + 1));
-
         nextCoffeeIndex = GetRandomCoffeeIndex();
 
         if (coffeeSprites.Length > nextCoffeeIndex)
@@ -248,7 +246,6 @@ public class CoffeeServer : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit");
         Application.Quit();
     }
 

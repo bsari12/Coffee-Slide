@@ -30,7 +30,6 @@ public class DeadZone : MonoBehaviour
             
             if (timer >= timeToDie)
             {
-                Debug.Log("GAME OVER!");
                 CoffeeServer.Instance.GameOver(); 
                 isDanger = false; 
             }
