@@ -33,7 +33,7 @@ public class CoffeeServer : MonoBehaviour
     public Sprite[] coffeeSprites;  
     public GameObject gameOverPanel; 
     public TextMeshProUGUI gameOverHighScoreText;
-
+    public GameObject pausePanel;
     
     [Header("Score System")]
     public TextMeshProUGUI scoreText;     
@@ -183,7 +183,7 @@ public class CoffeeServer : MonoBehaviour
 
         if (gameOverPanel != null)
         {
-            gameOverPanel.SetActive(true); // Paneli aç
+            gameOverPanel.SetActive(true); 
 
             if (gameOverHighScoreText != null)
             {
@@ -215,5 +215,30 @@ public class CoffeeServer : MonoBehaviour
     {
         if (scoreText != null)
             scoreText.text = currentScore.ToString();
+    }
+
+    public void PauseGame()
+    {
+        isGameActive = false; 
+        Time.timeScale = 0f;  
+        
+        if (pausePanel != null)
+            pausePanel.SetActive(true);
+    }
+
+    
+    public void ResumeGame()
+    {
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+
+        Time.timeScale = 1f; 
+        isGameActive = true; 
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }
