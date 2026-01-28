@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems; 
 
 public class CoffeeServer : MonoBehaviour
 {
@@ -76,6 +77,12 @@ public class CoffeeServer : MonoBehaviour
         if (currentCoffee == null) return;
         if (!isGameActive) return;
 
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+#else
+        if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) return;
+#endif
+
         if (Input.GetMouseButton(0)) 
         {
             isDragging = true;
@@ -129,8 +136,6 @@ public class CoffeeServer : MonoBehaviour
     private void ShootCoffee()
     {
         currentRb.bodyType = RigidbodyType2D.Dynamic; 
-        currentRb.AddForce(Vector2.up * shootForce, ForceMode2D.Impulse);
-
         currentRb.AddForce(Vector2.up * shootForce, ForceMode2D.Impulse);
 
         AudioManager.Instance.PlayThrow();
