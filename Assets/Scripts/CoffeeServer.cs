@@ -39,6 +39,10 @@ public class CoffeeServer : MonoBehaviour
     [Header("Effects")]
     public ParticleSystem mergeParticle; 
 
+    [Header("Aiming System")]
+    public SpriteRenderer aimSprite; 
+    public float aimLineLength = 10f; 
+
     [Header("Score System")]
     public TextMeshProUGUI scoreText;     
 
@@ -48,10 +52,6 @@ public class CoffeeServer : MonoBehaviour
     private bool isGameActive = true;
 
 
-
-
-
-
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -59,8 +59,10 @@ public class CoffeeServer : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;
         isGameActive = true; 
         Time.timeScale = 1f;
+        if (aimSprite != null) aimSprite.enabled = false;
 
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         currentScore = 0;
@@ -129,10 +131,21 @@ public class CoffeeServer : MonoBehaviour
         Vector3 newPosition = new Vector3(clampedX, spawnPoint.position.y, 0);
         
         currentCoffee.transform.position = newPosition;
+
+        if (aimSprite != null)
+        {
+            aimSprite.enabled = true;
+            aimSprite.transform.position = currentCoffee.transform.position;
+            Vector2 newSize = aimSprite.size;
+            newSize.y = aimLineLength; 
+            aimSprite.size = newSize;
+        }
     }
 
     private void ShootCoffee()
     {
+        if (aimSprite != null) aimSprite.enabled = false;
+        
         currentRb.bodyType = RigidbodyType2D.Dynamic; 
         currentRb.AddForce(Vector2.up * shootForce, ForceMode2D.Impulse);
 
