@@ -1,26 +1,34 @@
 using UnityEngine;
 
+[ExecuteAlways] 
 public class CameraFitter : MonoBehaviour
 {
     public float targetWidth = 6f; 
-
-    void Start()
-    {
-        AdjustCamera();
-    }
+    public float targetHeight = 11f; 
 
     void Update()
     {
-#if UNITY_EDITOR
         AdjustCamera();
-#endif
     }
 
     void AdjustCamera()
     {
+        if (Screen.height == 0) return;
 
         float screenRatio = (float)Screen.width / (float)Screen.height;
-        float targetSize = (targetWidth / screenRatio) / 2f;
-        Camera.main.orthographicSize = targetSize;
+
+        float sizeBasedOnWidth = (targetWidth / screenRatio) / 2f;
+
+        float sizeBasedOnHeight = targetHeight / 2f;
+
+        float finalSize = Mathf.Max(sizeBasedOnWidth, sizeBasedOnHeight);
+
+        Camera.main.orthographicSize = finalSize;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(Vector3.zero, new Vector3(targetWidth, targetHeight, 1));
     }
 }
