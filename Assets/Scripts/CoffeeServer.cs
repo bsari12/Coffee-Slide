@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CoffeeServer : MonoBehaviour
 {
@@ -30,9 +31,17 @@ public class CoffeeServer : MonoBehaviour
     [Header("UI Elements")]
     public Image nextCoffeeDisplay; 
     public Sprite[] coffeeSprites;  
-
-    [Header("UI Elements")]
     public GameObject gameOverPanel; 
+    public TextMeshProUGUI gameOverHighScoreText;
+
+    
+    [Header("Score System")]
+    public TextMeshProUGUI scoreText;     
+
+    private int currentScore = 0;
+    private int highScore = 0;
+
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -40,6 +49,11 @@ public class CoffeeServer : MonoBehaviour
 
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        currentScore = 0;
+        
+        UpdateScoreUI();
+
         nextCoffeeIndex = GetRandomCoffeeIndex();
 
         SpawnCoffee();
@@ -155,13 +169,40 @@ public class CoffeeServer : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0f;
-        if(gameOverPanel != null) 
-        gameOverPanel.SetActive(true);
+
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true); // Paneli aç
+
+            if (gameOverHighScoreText != null)
+            {
+                gameOverHighScoreText.text = "Highest Score:\n" + highScore.ToString();
+            }
+            
+        }
     }
-    
     public void RestartGame()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1f; 
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
+    public void AddScore(int points)
+    {
+        currentScore += points;
+
+        if (currentScore > highScore)
+        {
+            highScore = currentScore;
+            PlayerPrefs.SetInt("HighScore", highScore);
+        }
+
+        UpdateScoreUI();
+    }
+
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
+            scoreText.text = currentScore.ToString();
     }
 }

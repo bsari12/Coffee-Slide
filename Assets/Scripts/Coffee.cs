@@ -42,6 +42,9 @@ public class Coffee : MonoBehaviour
         
         AudioManager.Instance.PlayMerge();
 
+        int pointsReward = (this.coffeeLevelIndex + 1) * 10;
+        CoffeeServer.Instance.AddScore(pointsReward);
+
         CoffeeServer.Instance.SpawnNextLevelCoffee(this.coffeeLevelIndex, middlePos, averageVelocity);
 
         Destroy(other.gameObject);
