@@ -36,6 +36,8 @@ public class Coffee : MonoBehaviour
 
         Vector3 middlePos = (this.transform.position + other.transform.position) / 2f;
 
+        CoffeeServer.Instance.PlayMergeEffect(middlePos);
+        
         Rigidbody2D myRb = this.GetComponent<Rigidbody2D>();
         Rigidbody2D otherRb = other.GetComponent<Rigidbody2D>();
 

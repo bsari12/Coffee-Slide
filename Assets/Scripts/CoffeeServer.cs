@@ -35,6 +35,9 @@ public class CoffeeServer : MonoBehaviour
     public TextMeshProUGUI gameOverHighScoreText;
     public GameObject pausePanel;
     
+    [Header("Effects")]
+    public ParticleSystem mergeParticle; 
+
     [Header("Score System")]
     public TextMeshProUGUI scoreText;     
 
@@ -42,6 +45,11 @@ public class CoffeeServer : MonoBehaviour
     private int highScore = 0;
 
     private bool isGameActive = true;
+
+
+
+
+
 
     private void Awake()
     {
@@ -240,5 +248,14 @@ public class CoffeeServer : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void PlayMergeEffect(Vector3 position)
+    {
+        if (mergeParticle != null)
+        {
+            mergeParticle.transform.position = position;
+            mergeParticle.Play();
+        }
     }
 }
