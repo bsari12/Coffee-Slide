@@ -41,6 +41,7 @@ public class CoffeeServer : MonoBehaviour
     private int currentScore = 0;
     private int highScore = 0;
 
+    private bool isGameActive = true;
 
     private void Awake()
     {
@@ -49,6 +50,9 @@ public class CoffeeServer : MonoBehaviour
 
     void Start()
     {
+        isGameActive = true; 
+        Time.timeScale = 1f;
+
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         currentScore = 0;
         
@@ -62,6 +66,7 @@ public class CoffeeServer : MonoBehaviour
     void Update()
     {
         if (currentCoffee == null) return;
+        if (!isGameActive) return;
 
         if (Input.GetMouseButton(0)) 
         {
@@ -128,18 +133,22 @@ public class CoffeeServer : MonoBehaviour
         Invoke("SpawnCoffee", 0.7f);
     }
 
-    public void SpawnNextLevelCoffee(int currentLevelIndex, Vector3 spawnPos, Vector2 initialVelocity)
+    public void SpawnNextLevelCoffee(int currentLevelIndex, Vector3 spawnPos, Vector2 initialVelocity, float initialAngularVelocity)
     {
         if (currentLevelIndex >= allCoffeePrefabs.Length - 1) return;
 
         int nextLevelIndex = currentLevelIndex + 1;
         GameObject nextPrefab = allCoffeePrefabs[nextLevelIndex];
 
-        GameObject newCoffee = Instantiate(nextPrefab, spawnPos, Quaternion.identity);
+        Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+
+        GameObject newCoffee = Instantiate(nextPrefab, spawnPos, randomRotation);
 
         Rigidbody2D newRb = newCoffee.GetComponent<Rigidbody2D>();
         
-        newRb.linearVelocity = initialVelocity;
+        newRb.linearVelocity = initialVelocity; 
+        
+        newRb.angularVelocity = initialAngularVelocity;
     }
 
     private int GetRandomCoffeeIndex()
@@ -168,6 +177,8 @@ public class CoffeeServer : MonoBehaviour
 
     public void GameOver()
     {
+        isGameActive = false;
+
         Time.timeScale = 0f;
 
         if (gameOverPanel != null)

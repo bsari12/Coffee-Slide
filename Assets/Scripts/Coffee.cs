@@ -32,6 +32,7 @@ public class Coffee : MonoBehaviour
     {
         this.hasMerged = true;
         other.hasMerged = true;
+        AudioManager.Instance.PlayMerge();
 
         Vector3 middlePos = (this.transform.position + other.transform.position) / 2f;
 
@@ -40,12 +41,14 @@ public class Coffee : MonoBehaviour
 
         Vector2 averageVelocity = (myRb.linearVelocity + otherRb.linearVelocity) / 2f;
         
-        AudioManager.Instance.PlayMerge();
+        float averageAngularVel = (myRb.angularVelocity + otherRb.angularVelocity) / 2f;
+
+        averageAngularVel += Random.Range(-90f, 90f);
+
+        CoffeeServer.Instance.SpawnNextLevelCoffee(this.coffeeLevelIndex, middlePos, averageVelocity, averageAngularVel);
 
         int pointsReward = (this.coffeeLevelIndex + 1) * 10;
         CoffeeServer.Instance.AddScore(pointsReward);
-
-        CoffeeServer.Instance.SpawnNextLevelCoffee(this.coffeeLevelIndex, middlePos, averageVelocity);
 
         Destroy(other.gameObject);
         Destroy(this.gameObject);
