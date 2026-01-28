@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1504511938455799263}
   - component: {fileID: 7408212877648515102}
   - component: {fileID: 4361430206844883736}
-  - component: {fileID: 6045138099884042576}
   - component: {fileID: 5657862515491136544}
+  - component: {fileID: 7092340544239663318}
+  - component: {fileID: 1872739034973522917}
   m_Layer: 0
   m_Name: C10
   m_TagString: Coffee
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.49, y: -7.57, z: 0}
-  m_LocalScale: {x: 3.4000003, y: 3.4000003, z: 3.4000003}
+  m_LocalScale: {x: 3.7999997, y: 3.7999997, z: 3.7999997}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,8 +104,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coffeeLevelIndex: 9
---- !u!70 &6045138099884042576
-CapsuleCollider2D:
+--- !u!50 &5657862515491136544
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914007232676553002}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.5
+  m_LinearDamping: 3
+  m_AngularDamping: 2
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &7092340544239663318
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,33 +165,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.013190627, y: -0.06859088}
-  m_Size: {x: 0.46710086, y: 0.86281824}
-  m_Direction: 0
---- !u!50 &5657862515491136544
-Rigidbody2D:
-  serializedVersion: 5
+  m_Offset: {x: 0, y: 0.12827048}
+  m_Radius: 0.2529467
+--- !u!114 &1872739034973522917
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914007232676553002}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 2.1
-  m_AngularDamping: 2
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464e75f324a374a4e8a65ada6e1efd95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOffset: 0

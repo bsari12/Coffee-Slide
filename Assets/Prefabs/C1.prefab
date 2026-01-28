@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2491347857780274642}
   - component: {fileID: 5468492178914769749}
   - component: {fileID: 8245707484653339117}
-  - component: {fileID: 3674494410106985562}
+  - component: {fileID: 6921209450641290967}
+  - component: {fileID: 3895562018599115793}
   m_Layer: 0
   m_Name: C1
   m_TagString: Coffee
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.28, y: 10.75, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,8 +116,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 2.1
+  m_Mass: 0.5
+  m_LinearDamping: 3
   m_AngularDamping: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -129,9 +130,9 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!70 &3674494410106985562
-CapsuleCollider2D:
+  m_Constraints: 4
+--- !u!58 &6921209450641290967
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -164,6 +165,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.007712841, y: -0.0025710166}
-  m_Size: {x: 0.51151466, y: 0.99485797}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0.17051293}
+  m_Radius: 0.2974133
+--- !u!114 &3895562018599115793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9182478607463574848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464e75f324a374a4e8a65ada6e1efd95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOffset: 0

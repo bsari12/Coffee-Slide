@@ -153,15 +153,12 @@ public class CoffeeServer : MonoBehaviour
         int nextLevelIndex = currentLevelIndex + 1;
         GameObject nextPrefab = allCoffeePrefabs[nextLevelIndex];
 
-        Quaternion naturalRotation = Quaternion.Euler(0, 0, Random.Range(-20f, 20f));
-
-        GameObject newCoffee = Instantiate(nextPrefab, spawnPos, naturalRotation);
+        GameObject newCoffee = Instantiate(nextPrefab, spawnPos, Quaternion.identity);
 
         Rigidbody2D newRb = newCoffee.GetComponent<Rigidbody2D>();
         
-        newRb.linearVelocity = initialVelocity; 
-        
-        newRb.angularVelocity = initialAngularVelocity;
+        newRb.linearVelocity = initialVelocity * 0.8f; 
+        newRb.angularVelocity = 0f; 
     }
 
     private int GetRandomCoffeeIndex()

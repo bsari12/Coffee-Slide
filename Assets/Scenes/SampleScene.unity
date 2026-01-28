@@ -843,7 +843,7 @@ MonoBehaviour:
   - {fileID: 1914007232676553002, guid: ccaf74b3953b6b041b9b41744ab9f443, type: 3}
   - {fileID: 3850829615787159990, guid: ad85dced0553ca8479269d3411a8f6c6, type: 3}
   spawnPoint: {fileID: 568223820}
-  shootForce: 30
+  shootForce: 15
   xLimit: 4
   spawnWeights:
   - 50
@@ -1207,8 +1207,8 @@ Transform:
   m_GameObject: {fileID: 386995887}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -1.1884, z: 0}
-  m_LocalScale: {x: 11, y: 12.916201, z: 11}
+  m_LocalPosition: {x: 0.0147, y: -1.1884, z: 0}
+  m_LocalScale: {x: 11.0495, y: 12.916201, z: 11}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 384678440}
@@ -1304,7 +1304,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -10, y: -10}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &396598164
 MonoBehaviour:
@@ -1521,7 +1521,7 @@ Transform:
   m_GameObject: {fileID: 568223819}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalPosition: {x: 0, y: -7.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1774,8 +1774,8 @@ Transform:
   m_GameObject: {fileID: 645361030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.10886683, w: 0.9940564}
-  m_LocalPosition: {x: 3.82, y: -1.52, z: 0}
-  m_LocalScale: {x: 0.3850796, y: 10.8843, z: 1}
+  m_LocalPosition: {x: 3.8625, y: -1.52, z: 0}
+  m_LocalScale: {x: 0.38970053, y: 10.8843, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 384678440}
@@ -2402,7 +2402,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -100}
+  m_SizeDelta: {x: -200, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077061266
 MonoBehaviour:
@@ -2864,7 +2864,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 180}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1637665600
 MonoBehaviour:
