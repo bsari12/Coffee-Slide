@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems; 
+using UnityEngine.SceneManagement;
 
 public class CoffeeServer : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class CoffeeServer : MonoBehaviour
 
     [Header("Coffee List")]
     public GameObject[] allCoffeePrefabs; 
-    
+
+    [Header("Audio")]
+    public AudioSource bgmSource;
+
     [Header("Settings")]
     [SerializeField] private Transform spawnPoint;
     
@@ -36,8 +40,7 @@ public class CoffeeServer : MonoBehaviour
     public GameObject gameOverPanel; 
     public TextMeshProUGUI gameOverHighScoreText;
     public GameObject pausePanel;
-    
-    [Header("Menus")]
+    public GameObject inGameUI;
     public GameObject mainScreenPanel;
 
     [Header("Effects")]
@@ -285,5 +288,42 @@ public class CoffeeServer : MonoBehaviour
         isGameActive = true;            
 
         if(currentCoffee == null) SpawnCoffee(); 
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ToggleMusic()
+    {
+        if (bgmSource != null)
+        {
+            bgmSource.mute = !bgmSource.mute;
+        }
+    }
+
+    public void RestartGameFast()
+    {
+        GameObject[] coffees = GameObject.FindGameObjectsWithTag("Coffee");
+        foreach (GameObject c in coffees)
+        {
+            Destroy(c);
+        }
+
+        currentScore = 0;
+        UpdateScoreUI();
+        isGameOver = false;
+        
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (pausePanel != null) pausePanel.SetActive(false);
+        if (mainScreenPanel != null) mainScreenPanel.SetActive(false); 
+        if (inGameUI != null) inGameUI.SetActive(true);               
+
+        Time.timeScale = 1f;
+        isGameActive = true;
+        
+        SpawnCoffee();
     }
 }
