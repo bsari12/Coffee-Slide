@@ -22,6 +22,7 @@ public class CoffeeServer : MonoBehaviour
     private Rigidbody2D currentRb;
 
     private Vector2 initialVelocity;
+    private bool isGameOver = false;
 
     [Header("Next Coffee Logic")]
     public float[] spawnWeights; 
@@ -196,21 +197,21 @@ public class CoffeeServer : MonoBehaviour
 
     public void GameOver()
     {
+        if (isGameOver) return; 
+    
+        isGameOver = true;
         isGameActive = false;
-
-        Time.timeScale = 0f;
 
         if (gameOverPanel != null)
         {
-            gameOverPanel.SetActive(true); 
-
+            gameOverPanel.SetActive(true);
             if (gameOverHighScoreText != null)
-            {
-                gameOverHighScoreText.text = "Highest Score:\n" + highScore.ToString();
-            }
-            
+                gameOverHighScoreText.text = "Highest Score:\n" + PlayerPrefs.GetInt("HighScore", 0).ToString();
         }
+
+        Time.timeScale = 0f;
     }
+
     public void RestartGame()
     {
         Time.timeScale = 1f; 
@@ -248,11 +249,13 @@ public class CoffeeServer : MonoBehaviour
     
     public void ResumeGame()
     {
+        if (isGameOver) return; 
+
         if (pausePanel != null)
             pausePanel.SetActive(false);
 
         Time.timeScale = 1f; 
-        isGameActive = true; 
+        isGameActive = true;
     }
 
     public void QuitGame()

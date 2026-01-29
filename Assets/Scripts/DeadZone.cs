@@ -3,67 +3,56 @@ using UnityEngine;
 public class DeadZone : MonoBehaviour
 {
     [Header("Settings")]
-    public float timeToDie = 3f; 
-    
+    public float limitTime = 3f;
     private float timer = 0f;
-    private bool isDanger = false;
-    private SpriteRenderer spriteRenderer;
+    private int coffeeCount = 0; 
 
-    void Start()
+    private SpriteRenderer sr;
+    private Color originalColor;
+
+    void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
+        if (sr != null) originalColor = sr.color;
     }
 
     void Update()
     {
-        
-        if (isDanger)
+        if (coffeeCount > 0)
         {
             timer += Time.deltaTime;
-            
-            
-            float flicker = Mathf.PingPong(Time.time * 5, 1f); 
-            Color c = spriteRenderer.color;
-            c.a = 0.5f + (flicker * 0.5f); 
-            spriteRenderer.color = c;
-
-            
-            if (timer >= timeToDie)
+            if (sr != null)
             {
-                CoffeeServer.Instance.GameOver(); 
-                isDanger = false; 
+                float lerp = Mathf.PingPong(Time.time * 6f, 1f);
+                sr.color = Color.Lerp(originalColor, Color.red, lerp);
+            }
+
+            if (timer >= limitTime)
+            {
+                CoffeeServer.Instance.GameOver();
             }
         }
         else
         {
             timer = 0f;
-            Color c = spriteRenderer.color;
-            c.a = 0.2f; 
-            spriteRenderer.color = c;
+            if (sr != null && sr.color != originalColor) sr.color = originalColor;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Coffee") || other.GetComponent<Coffee>() != null)
+        if (other.CompareTag("Coffee") && other.attachedRigidbody.bodyType == RigidbodyType2D.Dynamic)
         {
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-            
-            if (rb != null && rb.bodyType == RigidbodyType2D.Dynamic)
-            {
-                if (rb.linearVelocity.magnitude < 0.5f)
-                {
-                    isDanger = true;
-                }
-            }
+            coffeeCount++;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<Coffee>() != null)
+        if (other.CompareTag("Coffee"))
         {
-             isDanger = false;
+            coffeeCount--;
+            if (coffeeCount < 0) coffeeCount = 0;
         }
     }
 }
