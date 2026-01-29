@@ -57,7 +57,9 @@ public class CoffeeServer : MonoBehaviour
     private int highScore = 0;
 
     private bool isGameActive = true;
-
+    public Image musicButtonImage; 
+    public Sprite musicOnSprite;
+    public Sprite musicOffSprite;
 
     private void Awake()
     {
@@ -301,6 +303,7 @@ public class CoffeeServer : MonoBehaviour
         if (bgmSource != null)
         {
             bgmSource.mute = !bgmSource.mute;
+            musicButtonImage.sprite = bgmSource.mute ? musicOffSprite : musicOnSprite;
         }
     }
 
