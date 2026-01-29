@@ -37,6 +37,9 @@ public class CoffeeServer : MonoBehaviour
     public TextMeshProUGUI gameOverHighScoreText;
     public GameObject pausePanel;
     
+    [Header("Menus")]
+    public GameObject mainScreenPanel;
+
     [Header("Effects")]
     public ParticleSystem mergeParticle; 
 
@@ -60,6 +63,9 @@ public class CoffeeServer : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0f; 
+        mainScreenPanel.SetActive(true);
+
         Application.targetFrameRate = 60;
         isGameActive = true; 
         Time.timeScale = 1f;
@@ -270,5 +276,14 @@ public class CoffeeServer : MonoBehaviour
             mergeParticle.transform.position = position;
             mergeParticle.Play();
         }
+    }
+
+    public void StartGame()
+    {
+        mainScreenPanel.SetActive(false);    
+        Time.timeScale = 1f;            
+        isGameActive = true;            
+
+        if(currentCoffee == null) SpawnCoffee(); 
     }
 }
