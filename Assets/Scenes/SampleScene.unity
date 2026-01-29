@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c66b8cb88430740b9dd01b2f7fca25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitTime: 3
+  limitTime: 1.5
 --- !u!1 &200928188
 GameObject:
   m_ObjectHideFlags: 0
